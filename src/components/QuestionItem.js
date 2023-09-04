@@ -9,6 +9,14 @@ function QuestionItem({ question }) {
     </option>
   ));
 
+  function onDeleteQuestion(){
+    fetch("http://localhost:4000/questions",{
+      method: "DELETE"
+    })
+    .then((r)=> r.json())
+    .then((questionsData) => onRemoveQuestion(questionsData))
+  }
+
   return (
     <li>
       <h4>Question {id}</h4>
@@ -17,7 +25,7 @@ function QuestionItem({ question }) {
         Correct Answer:
         <select defaultValue={correctIndex}>{options}</select>
       </label>
-      <button>Delete Question</button>
+      <button onClick={onDeleteQuestion}>Delete Question</button>
     </li>
   );
 }
