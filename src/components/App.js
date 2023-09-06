@@ -7,25 +7,20 @@ function App() {
   const [page, setPage] = useState("List");
   const [questions, setQuestions] = useState([]);
 
-  const handleAddQuestion = (newQuestion) => {
-    setQuestions([...questions,newQuestion])
-    
 
+console.log(questions);
 
-};
+useEffect(() => {
+  fetch("http://localhost:4000/questions")
+    .then((response) => response.json())
+    .then((questionsData) => setQuestions(questionsData));
+}, []);
 
-  console.log(questions);
-
-  useEffect(() => {
-    fetch(`http://localhost:4000/questions`)
-      .then((response) => response.json())
-      .then((questionsData) => setQuestions(questionsData));
-  }, []);
-
-  
-  const removeQuestion = (questionToBeDeleted) => {
-    const updatedQuestion = questions.filter((questionItem) => { questionItem.id !== questionToBeDeleted.id})
-    setQuestions(updatedQuestion)}
+const handleAddQuestion = (newQuestion) => {
+  setQuestions([...questions, newQuestion])}
+  //const removeQuestion = (questionToBeDeleted) => {
+  //  const updatedQuestion = questions.filter((questionItem) => { questionItem.id !== questionToBeDeleted.id})
+  //  setQuestions(updatedQuestion)}
 
   return (
     <main>
@@ -33,10 +28,13 @@ function App() {
       {page === "Form" ? (
         <QuestionForm onAddQuestion={handleAddQuestion} />
       ) : (
-        <QuestionList onRemoveQuestion={removeQuestion} questions={questions} />
+        <QuestionList
+          // onRemoveQuestion={removeQuestion}
+          questions={questions}
+        />
       )}
     </main>
   );
-}
+};
 
 export default App;

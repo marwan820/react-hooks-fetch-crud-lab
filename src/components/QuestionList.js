@@ -1,20 +1,29 @@
 import React from "react";
 import QuestionItem from "./QuestionItem";
+function QuestionList({ questions, onRemoveQuestion }) {
+  // function onDeleteQuestion(){
+  // fetch(`http://localhost:4000/questions/${questions.id}`,{
+  //   method: "DELETE"
+  //   })
+  //   .then((r)=> r.json())
+  //   .then((questionsData) => onRemoveQuestion(questionsData))
+  // }
+  console.log("From List",questions)
 
-function QuestionList({questions}) {
+  const questionsList = questions.map((question) => (
+    <li key={question.prompt}>
+      {question.prompt}</li>
+  ));
 
-  
-
-  
-
- const questionsList = questions.map(question => <li key={question.prompt}>{question.prompt}</li>)
-
-  
   return (
     <section>
       <h1>Quiz Questions</h1>
-      <ul>{/* display QuestionItem components here after fetching */ questionsList}
-      <QuestionItem /> </ul>
+      <ul>
+        {questionsList}
+          /* display QuestionItem components here after fetching */ //questionsList
+          
+        
+      </ul>
     </section>
   );
 }

@@ -10,10 +10,12 @@ function QuestionForm({ onAddQuestion }) {
     correctIndex: 0,
   });
 
-  function handleChange(event) {
+  function handleChange({ target }) {
+    const { name, value } = target;
+    const formDataCopy = { ...formData };
     setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
+      formDataCopy,
+      [name]: value,
     });
   }
 
@@ -21,7 +23,12 @@ function QuestionForm({ onAddQuestion }) {
     event.preventDefault();
     const newQuestion = {
       prompt: formData.prompt,
-      answers:[formData.answer1,formData.answer2,formData.answer3,formData.answer4],
+      answers: [
+        formData.answer1,
+        formData.answer2,
+        formData.answer3,
+        formData.answer4,
+      ],
       correctIndex: formData.correctIndex,
     };
     fetch("http://localhost:4000/questions", {

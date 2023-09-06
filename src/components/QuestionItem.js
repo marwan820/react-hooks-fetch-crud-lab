@@ -9,23 +9,15 @@ function QuestionItem({ question }) {
     </option>
   ));
 
-  function onDeleteQuestion(){
-    fetch("http://localhost:4000/questions",{
-      method: "DELETE"
-    })
-    .then((r)=> r.json())
-    .then((questionsData) => onRemoveQuestion(questionsData))
-  }
-
   return (
-    <li>
+    <li key={prompt}>
       <h4>Question {id}</h4>
       <h5>Prompt: {prompt}</h5>
       <label>
         Correct Answer:
         <select defaultValue={correctIndex}>{options}</select>
       </label>
-      <button onClick={onDeleteQuestion}>Delete Question</button>
+      <button>Delete Question</button>
     </li>
   );
 }
