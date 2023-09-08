@@ -6,21 +6,27 @@ import QuestionList from "./QuestionList";
 function App() {
   const [page, setPage] = useState("List");
   const [questions, setQuestions] = useState([]);
+  // const [questionsCopy,setQuestionsCopy] = useState(...questions)
+  console.log(questions);
 
+  useEffect(() => {
+    console.log("Here");
+    fetch("http://localhost:4000/questions")
+      .then((response) => response.json())
+      .then((questionsData) => setQuestions(questionsData));
+  }, []);
 
-console.log(questions);
+  const handleAddQuestion = (newQuestion) => {
+    setQuestions([...questions, newQuestion]);
+  };
 
-useEffect(() => {
-  fetch("http://localhost:4000/questions")
-    .then((response) => response.json())
-    .then((questionsData) => setQuestions(questionsData));
-}, []);
-
-const handleAddQuestion = (newQuestion) => {
-  setQuestions([...questions, newQuestion])}
-  //const removeQuestion = (questionToBeDeleted) => {
-  //  const updatedQuestion = questions.filter((questionItem) => { questionItem.id !== questionToBeDeleted.id})
-  //  setQuestions(updatedQuestion)}
+  // Delete
+  const onDeleteQuestionClick = (questionToBeDeleted) => {
+    const questionFilter = questions.filter((question) => {
+      return question.id !== questionToBeDeleted.id;
+    });
+    setQuestions(questionFilter);
+  };
 
   return (
     <main>
@@ -29,12 +35,12 @@ const handleAddQuestion = (newQuestion) => {
         <QuestionForm onAddQuestion={handleAddQuestion} />
       ) : (
         <QuestionList
-          // onRemoveQuestion={removeQuestion}
           questions={questions}
+          handleDeleteClick={onDeleteQuestionClick}
         />
       )}
     </main>
   );
-};
+}
 
 export default App;

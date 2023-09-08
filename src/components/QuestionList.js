@@ -1,29 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import QuestionItem from "./QuestionItem";
-function QuestionList({ questions, onRemoveQuestion }) {
-  // function onDeleteQuestion(){
-  // fetch(`http://localhost:4000/questions/${questions.id}`,{
-  //   method: "DELETE"
-  //   })
-  //   .then((r)=> r.json())
-  //   .then((questionsData) => onRemoveQuestion(questionsData))
-  // }
-  console.log("From List",questions)
-
-  const questionsList = questions.map((question) => (
-    <li key={question.prompt}>
-      {question.prompt}</li>
-  ));
-
+function QuestionList({ questions, handleDeleteClick }) {
+  const questionsList = questions.map((question) => {
+    return (
+      console.log(question.id),
+      (
+        <QuestionItem
+          handleDeleteClick={handleDeleteClick}
+          key={question.id}
+          question={question}
+        />
+      )
+    );
+  });
   return (
     <section>
       <h1>Quiz Questions</h1>
-      <ul>
-        {questionsList}
-          /* display QuestionItem components here after fetching */ //questionsList
-          
-        
-      </ul>
+      <ul>{questionsList}</ul>
     </section>
   );
 }
