@@ -2,6 +2,7 @@ import React from "react";
 
 function QuestionItem({ question, handleDeleteClick }) {
   const { id, prompt, answers, correctIndex } = question;
+  
 
   const options = answers.map((answer, index) => {
     return (
@@ -12,15 +13,16 @@ function QuestionItem({ question, handleDeleteClick }) {
   });
 
   function onDeleteQuestion() {
-    console.log("Delete");
-
+    console.log("Delete", Object.entries(question));
+    const questionId =  Object.entries(question)[0][1]
+    console.log("Question ID",questionId)
     const config = {
       method: "Delete",
     };
-
-    fetch(`http://localhost:4000/questions/${question}`, config)
-      .then((res) => res.json())
-      handleDeleteClick(question)
+    
+    fetch(`http://localhost:4000/questions/${questionId}`, config)
+    handleDeleteClick(question)
+  
   }
 
   return (
