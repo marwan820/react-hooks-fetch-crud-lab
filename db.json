@@ -1,17 +1,6 @@
 {
   "questions": [
     {
-      "id": 2,
-      "prompt": "A React component is a function that returns ______.",
-      "answers": [
-        "HTML",
-        "JSX",
-        "props",
-        "state"
-      ],
-      "correctIndex": 1
-    },
-    {
       "id": 3,
       "prompt": "Which event handler will run when a user is finished filling out a form?",
       "answers": [
@@ -56,26 +45,14 @@
       "correctIndex": 1
     },
     {
-      "prompt": "what is it something called ",
+      "prompt": "new question 4",
       "answers": [
-        "something",
-        "",
-        "",
-        ""
+        null,
+        null,
+        null,
+        null
       ],
-      "correctIndex": 0,
       "id": 7
-    },
-    {
-      "prompt": "what is it something called ",
-      "answers": [
-        "something",
-        "",
-        "",
-        ""
-      ],
-      "correctIndex": 0,
-      "id": 9
     }
   ]
 }

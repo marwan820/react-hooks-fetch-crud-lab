@@ -3,8 +3,6 @@ import React from "react";
 function QuestionItem({ question, handleDeleteClick }) {
   const { id, prompt, answers, correctIndex } = question;
 
-  
-
   const options = answers.map((answer, index) => {
     return (
       <option key={index} value={index}>
@@ -20,8 +18,9 @@ function QuestionItem({ question, handleDeleteClick }) {
       method: "Delete",
     };
 
-    fetch(`http://localhost:4000/questions/${id}`, config);
-    handleDeleteClick(question);
+    fetch(`http://localhost:4000/questions/${question}`, config)
+      .then((res) => res.json())
+      handleDeleteClick(question)
   }
 
   return (

@@ -4,6 +4,35 @@ import QuestionForm from "./QuestionForm";
 import QuestionList from "./QuestionList";
 
 function App() {
+
+/* CREATING A PATCH 
+
+const config = {method:Patch,headers:{
+  Content-Type": "application/json
+},body: JSON.stringfy()
+
+
+}
+}
+
+fetch("url",config)
+.then(response => response.json())
+
+When the correct answer tab changes update the database to reflect the new change 
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
   const [page, setPage] = useState("List");
   const [questions, setQuestions] = useState([]);
   // const [questionsCopy,setQuestionsCopy] = useState(...questions)
@@ -26,6 +55,7 @@ function App() {
       return question.id !== questionToBeDeleted.id;
     });
     setQuestions(questionFilter);
+    
   };
 
   return (

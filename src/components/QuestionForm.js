@@ -32,10 +32,11 @@ function QuestionForm({ onAddQuestion }) {
       correctIndex: formData.correctIndex,
     };
     fetch("http://localhost:4000/questions", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
+      // const config = {
+        method: "Post",
+        headers: { "Content-type": "application/json" },
       body: JSON.stringify(newQuestion),
-    })
+      })
       .then((r) => r.json())
       .then((questions) => onAddQuestion(questions));
   }
