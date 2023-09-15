@@ -11,17 +11,17 @@ function QuestionForm({ onAddQuestion }) {
   });
 
   function handleChange({ target }) {
+    //console.log(target);
     const { name, value } = target;
+
     const formDataCopy = { ...formData };
-    setFormData({
-      formDataCopy,
-      [name]: value,
-    });
+    formDataCopy[name] = value;
+    setFormData(formDataCopy);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    const newQuestion = {
+    const newFormObject = {
       prompt: formData.prompt,
       answers: [
         formData.answer1,
@@ -31,14 +31,25 @@ function QuestionForm({ onAddQuestion }) {
       ],
       correctIndex: formData.correctIndex,
     };
-    fetch("http://localhost:4000/questions", {
-      // const config = {
-        method: "Post",
-        headers: { "Content-type": "application/json" },
-      body: JSON.stringify(newQuestion),
-      })
+
+    const config = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newFormObject),
+    };
+
+    fetch("http://localhost:4000/questions", config)
       .then((r) => r.json())
-      .then((questions) => onAddQuestion(questions));
+      .then((question) => onAddQuestion(question));
+
+    // setFormData = {
+    //   prompt: "",
+    //   answer1: "",
+    //   answer2: "",
+    //   answer3: "",
+    //   answer4: "",
+    //   correctIndex: 0,
+    // };
   }
   return (
     <section>
@@ -51,6 +62,7 @@ function QuestionForm({ onAddQuestion }) {
             name="prompt"
             value={formData.prompt}
             onChange={handleChange}
+            required
           />
         </label>
         <label>
@@ -60,6 +72,7 @@ function QuestionForm({ onAddQuestion }) {
             name="answer1"
             value={formData.answer1}
             onChange={handleChange}
+            required
           />
         </label>
         <label>
@@ -69,6 +82,7 @@ function QuestionForm({ onAddQuestion }) {
             name="answer2"
             value={formData.answer2}
             onChange={handleChange}
+            required
           />
         </label>
         <label>
@@ -78,6 +92,7 @@ function QuestionForm({ onAddQuestion }) {
             name="answer3"
             value={formData.answer3}
             onChange={handleChange}
+            required
           />
         </label>
         <label>
@@ -87,6 +102,7 @@ function QuestionForm({ onAddQuestion }) {
             name="answer4"
             value={formData.answer4}
             onChange={handleChange}
+            required
           />
         </label>
         <label>
@@ -95,6 +111,7 @@ function QuestionForm({ onAddQuestion }) {
             name="correctIndex"
             value={formData.correctIndex}
             onChange={handleChange}
+            required
           >
             <option value="0">{formData.answer1}</option>
             <option value="1">{formData.answer2}</option>

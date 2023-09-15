@@ -4,47 +4,18 @@ import QuestionForm from "./QuestionForm";
 import QuestionList from "./QuestionList";
 
 function App() {
-
-/* CREATING A PATCH 
-
-const config = {method:Patch,headers:{
-  Content-Type": "application/json
-},body: JSON.stringfy()
-
-
-}
-}
-
-fetch("url",config)
-.then(response => response.json())
-
-When the correct answer tab changes update the database to reflect the new change 
-
-
-
-
-
-
-
-
-
-*/
-
-
-
-
   const [page, setPage] = useState("List");
-  const [questions, setQuestions] = useState([]);
-  // const [questionsCopy,setQuestionsCopy] = useState(...questions)
-  console.log(questions);
+  const [questions, setQuestions] = useState([]);;
+  console.log("Questions", questions);
 
   useEffect(() => {
-    console.log("Here");
     fetch("http://localhost:4000/questions")
       .then((response) => response.json())
-      .then((questionsData) => setQuestions(questionsData));
+      .then(questionsData => setQuestions([...questionsData]));
   }, []);
 
+
+// Post
   const handleAddQuestion = (newQuestion) => {
     setQuestions([...questions, newQuestion]);
   };
@@ -55,14 +26,13 @@ When the correct answer tab changes update the database to reflect the new chang
       return question.id !== questionToBeDeleted.id;
     });
     setQuestions(questionFilter);
-    
   };
 
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
       {page === "Form" ? (
-        <QuestionForm onAddQuestion={handleAddQuestion} />
+        <QuestionForm onAddQuestion={handleAddQuestion}  />
       ) : (
         <QuestionList
           questions={questions}
