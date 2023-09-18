@@ -10,10 +10,8 @@ function QuestionItem({ question, handleDeleteClick }) {
 
     fetch(`http://localhost:4000/questions/${id}`, config)
       .then((res) => res.json())
-      .then(() => handleDeleteClick(question))
+      .then(() => handleDeleteClick(question));
   }
-
-  //console.log(question)
 
   const options = answers.map((answer, index) => {
     return (
@@ -22,16 +20,6 @@ function QuestionItem({ question, handleDeleteClick }) {
       </option>
     );
   });
-
-  // function onDeleteQuestion() {
-  //   const config = {
-  //     method: "DELETE",
-  //   };
-
-  //   fetch(`http://localhost:4000/questions/${id}`, config)
-  //     .then((res) => res.json())
-  //     .then(handleDeleteClick(question));
-  // }
 
   return (
     <li key={prompt}>

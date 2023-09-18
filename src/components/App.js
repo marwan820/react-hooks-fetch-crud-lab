@@ -5,19 +5,15 @@ import QuestionList from "./QuestionList";
 
 function App() {
   const [page, setPage] = useState("List");
-  const [questions, setQuestions] = useState([]);;
-  console.log("Questions", questions);
-
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:4000/questions")
       .then((response) => response.json())
-      .then(questionsData => setQuestions([...questionsData]));
-  }, [])
-  
+      .then((questionsData) => setQuestions([...questionsData]));
+  }, []);
 
-
-// Post
+  // Post
   const handleAddQuestion = (newQuestion) => {
     setQuestions([...questions, newQuestion]);
   };
@@ -34,7 +30,7 @@ function App() {
     <main>
       <AdminNavBar onChangePage={setPage} />
       {page === "Form" ? (
-        <QuestionForm onAddQuestion={handleAddQuestion}  />
+        <QuestionForm onAddQuestion={handleAddQuestion} />
       ) : (
         <QuestionList
           questions={questions}
