@@ -8,11 +8,13 @@ function App() {
   const [questions, setQuestions] = useState([]);;
   console.log("Questions", questions);
 
+
   useEffect(() => {
     fetch("http://localhost:4000/questions")
       .then((response) => response.json())
       .then(questionsData => setQuestions([...questionsData]));
-  }, []);
+  }, [])
+  
 
 
 // Post

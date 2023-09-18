@@ -3,6 +3,16 @@ import React from "react";
 function QuestionItem({ question, handleDeleteClick }) {
   const { id, prompt, answers, correctIndex } = question;
 
+  function onDeleteQuestion() {
+    const config = {
+      method: "DELETE",
+    };
+
+    fetch(`http://localhost:4000/questions/${id}`, config)
+      .then((res) => res.json())
+      .then(() => handleDeleteClick(question))
+  }
+
   //console.log(question)
 
   const options = answers.map((answer, index) => {
@@ -13,15 +23,15 @@ function QuestionItem({ question, handleDeleteClick }) {
     );
   });
 
-  function onDeleteQuestion() {
-    const config = {
-      method: "DELETE",
-    };
+  // function onDeleteQuestion() {
+  //   const config = {
+  //     method: "DELETE",
+  //   };
 
-    fetch(`http://localhost:4000/questions/${id}`, config)
-      .then((res) => res.json())
-      .then(handleDeleteClick(question));
-  }
+  //   fetch(`http://localhost:4000/questions/${id}`, config)
+  //     .then((res) => res.json())
+  //     .then(handleDeleteClick(question));
+  // }
 
   return (
     <li key={prompt}>

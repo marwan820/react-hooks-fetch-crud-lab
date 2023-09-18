@@ -11,7 +11,7 @@ function QuestionForm({ onAddQuestion }) {
   });
 
   function handleChange({ target }) {
-    //console.log(target);
+    
     const { name, value } = target;
 
     const formDataCopy = { ...formData };

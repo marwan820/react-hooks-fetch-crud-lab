@@ -65,17 +65,6 @@
         "controlled"
       ],
       "correctIndex": 1
-    },
-    {
-      "prompt": "what is it something called ",
-      "answers": [
-        "blue",
-        "red",
-        "green",
-        "pink"
-      ],
-      "correctIndex": 0,
-      "id": 7
     }
   ]
 }
